@@ -1,0 +1,284 @@
+/* ============================================
+   Mobile-first luxury white card
+   با لوگوی شرکت جای مونوگرام
+   ============================================ */
+
+:root {
+  --bg:        #f4f5f7;
+  --surface:   #ffffff;
+  --text:      #0f172a;
+  --muted:     #8b93a3;
+  --navy:      #1c2b45;
+  --navy-soft: rgba(28, 43, 69, 0.12);
+  --navy-line: rgba(28, 43, 69, 0.08);
+  --line:      #eceef2;
+  --icon-bg:   #f6f7f9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+/* --- Mobile-first: ارتفاع واقعی دستگاه --- */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: max(16px, env(safe-area-inset-top)) 16px
+           max(16px, env(safe-area-inset-bottom)) 16px;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ===== Card ===== */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+  padding: 40px 22px 28px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-align: center;
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.03),
+    0 20px 50px -24px rgba(28, 43, 69, 0.12);
+  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--navy-soft), transparent);
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Logo (جای مونوگرام) ===== */
+.logo {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 22px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--navy-soft);
+  border-radius: 50%;
+  background: #fbfcfd;
+  overflow: hidden;
+  padding: 12px;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ===== Name & title ===== */
+.name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  color: var(--text);
+}
+
+.job {
+  margin-top: 8px;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.company {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--navy);
+  opacity: 0.75;
+}
+
+/* ===== Divider ===== */
+.divider {
+  height: 1px;
+  margin: 26px 0 6px;
+  background: var(--navy-line);
+}
+
+/* ===== Contact list ===== */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 60px;
+  padding: 12px 4px;
+  text-decoration: none;
+  color: var(--text);
+  border-bottom: 1px solid var(--navy-line);
+  transition: background 0.2s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.contact-item:last-child { border-bottom: none; }
+
+/* آیکون */
+.icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  background: var(--icon-bg);
+  border: 1px solid var(--navy-soft);
+  border-radius: 50%;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.icon svg {
+  width: 17px;
+  height: 17px;
+  fill: var(--navy);
+  opacity: 0.85;
+  transition: fill 0.2s ease, opacity 0.2s ease;
+}
+
+/* متن */
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  min-width: 0;
+  text-align: left;
+}
+
+.label {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.value {
+  font-size: 0.86rem;
+  font-weight: 400;
+  color: var(--text);
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* هاور فقط روی دستگاه‌های ماوس‌دار */
+@media (hover: hover) {
+  .contact-item:hover .icon {
+    background: var(--navy);
+    border-color: var(--navy);
+  }
+  .contact-item:hover .icon svg { fill: #fff; opacity: 1; }
+  .contact-item:hover .value { color: var(--navy); }
+}
+
+/* لمس فعال */
+.contact-item:active {
+  background: rgba(28, 43, 69, 0.04);
+}
+
+/* ===== iPhone SE / گوشی‌های کوچک ===== */
+@media (max-width: 360px) {
+  .card { padding: 32px 16px 22px; }
+  .name { font-size: 1.55rem; }
+  .icon { width: 34px; height: 34px; }
+  .icon svg { width: 15px; height: 15px; }
+  .value { font-size: 0.8rem; }
+  .logo { width: 64px; height: 64px; padding: 10px; }
+}
+
+/* ===== گوشی‌های بزرگ‌تر (Plus/Pro Max) ===== */
+@media (min-width: 430px) {
+  .card { padding: 48px 32px 34px; }
+  .name { font-size: 2rem; }
+  .logo { width: 80px; height: 80px; padding: 14px; }
+}
+
+/* ===== تبلت (آیپد / تبلت اندروید) ===== */
+@media (min-width: 768px) {
+  body { align-items: center; padding: 40px; }
+  .card { max-width: 460px; padding: 56px 44px 40px; }
+  .name { font-size: 2.1rem; }
+  .icon { width: 42px; height: 42px; }
+  .icon svg { width: 18px; height: 18px; }
+  .contact-item { min-height: 64px; }
+  .logo { width: 88px; height: 88px; padding: 16px; }
+}
+
+/* ===== دسکتاپ ===== */
+@media (min-width: 1024px) {
+  .card { max-width: 480px; }
+}
+
+/* ===== حالت افقی گوشی (کوتاه) ===== */
+@media (max-height: 520px) and (orientation: landscape) {
+  body { align-items: flex-start; padding: 12px; }
+  .card { padding: 24px 22px 18px; }
+  .logo { width: 52px; height: 52px; margin-bottom: 14px; padding: 8px; }
+  .divider { margin: 16px 0 4px; }
+  .contact-item { min-height: 52px; padding: 10px 4px; }
+}
+
+/* ===== Toast ===== */
+#toast {
+  position: fixed;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  padding: 10px 22px;
+  background: #ffffff;
+  border: 1px solid var(--navy-soft);
+  border-radius: 6px;
+  color: var(--navy);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 30px -12px rgba(28, 43, 69, 0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 99;
+  max-width: calc(100% - 32px);
+  text-align: center;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
